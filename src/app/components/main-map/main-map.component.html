@@ -1,0 +1,12 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"
+         (mapClick)="onMapClick($event)"
+         (mapRightClick)="onRightClick($event)"
+>
+  <agm-polygon *ngIf="paths.length > 1" [polyDraggable]="true"
+               [(paths)]="paths"
+               [editable]="true"
+               [draggable]="true"
+               [geodesic]="true">
+  </agm-polygon>
+</agm-map>
+
