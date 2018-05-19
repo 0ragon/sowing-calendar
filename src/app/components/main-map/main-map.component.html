@@ -1,8 +1,9 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"
+<agm-map *ngIf="userCoords || locationTrackingBlocked" [latitude]="userCoords.lat" [longitude]="userCoords.lon" [zoom]="zoom"
          (mapClick)="onMapClick($event)"
          (mapRightClick)="onRightClick($event)"
 >
   <agm-polygon *ngIf="paths.length > 1" [polyDraggable]="true"
+               [editable]="false"
                [(paths)]="paths"
                [editable]="true"
                [draggable]="true"

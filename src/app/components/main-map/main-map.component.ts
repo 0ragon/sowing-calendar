@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {MapService} from '../../services/map.service';
 
 interface Coords {
   lat: number;
@@ -11,10 +12,12 @@ interface Coords {
   styleUrls: ['./main-map.component.scss'],
 })
 export class MainMapComponent {
-  lat = 0;
-  lng = 0;
-  zoom = 10;
-  paths: Coords[] = [
+  // @Input() params = null;
+  userCoords = this._mapService.coords;
+  locationTrackingBlocked = this._mapService.isLocationBlocked();
+  maxPoints = 4;
+  zoom = 4;
+  paths = [
     // {lat: 0, lon: 10},
     // {lat: 0, lon: 0},
     // {lat: 10, lon: 20},
@@ -22,13 +25,14 @@ export class MainMapComponent {
     // {lat: 0, lon: 10}
   ];
 
-  constructor() {
+  constructor(private _mapService: MapService) {
+    // this._mapService.getLocation();
+    // setInterval(() => console.log(this.userCoords), 1000);
   }
 
   onMapClick(event) {
-    console.log('paths', this.paths);
     const newCoords: Coords[] = [];
-    if (this.paths.length < 2) {
+    if (this.paths.length < 2 && this.paths.length <= this.maxPoints) {
       this.paths.push(event.coords as Coords);
     } else {
       for (const path of this.paths) {
@@ -39,7 +43,6 @@ export class MainMapComponent {
       if (newCoords.length > 1) {
         this.paths = newCoords;
       }
-      console.log('new', newCoords);
     }
   }
 
