@@ -1,0 +1,28 @@
+.cultures-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-top: 5px;
+  //margin-bottom: 230px;
+  .cultures-side-menu {
+    width: 25%;
+  }
+
+  .cultures-content {
+    width: 100%;
+    min-height: 100%;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .cultures-side-menu {
+    width: 100% !important;
+  }
+}
+
+//@media screen and (min-width: 959px){
+//  .cultures-side-menu {
+//    width: 33.33%;
+//  }
+//}

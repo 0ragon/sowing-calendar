@@ -1,0 +1,6 @@
+<ul *ngIf="menuItems" class="list-group">
+  <li class="list-group-item" *ngFor="let item of menuItems" (click)="onItemSelect(item)"
+      [class.active]="item.name === selectedItem.name" >
+    {{item.name}}
+  </li>
+</ul>

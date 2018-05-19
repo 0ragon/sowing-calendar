@@ -1,0 +1,15 @@
+<!--size of top offset - 230px-->
+<div class="library-container">
+  <div class="form-group search">
+    <label for="exampleInputEmail1">Пошук</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="search" placeholder="Search...">
+  </div>
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let tab of tabItems" [routerLink]="tab.route" (click)="onTabSelect(tab)">
+      <a class="nav-link" [class.active]="tab.name === selectedTab.name">{{tab.name}}</a>
+    </li>
+  </ul>
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
