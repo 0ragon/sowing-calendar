@@ -1,26 +1,30 @@
 import {Injectable} from '@angular/core';
-import {Coords} from '../models/coords.class';
+import {LatLngLiteral} from '@agm/core/services/google-maps-types';
 
 @Injectable()
 export class MapService {
-  private _coords: Coords = null;
+  private _coords: LatLngLiteral = null;
   locationTrackingBlocked = false;
   locationTrackingError = false;
 
-  get coords(): Coords {
+  get coords(): LatLngLiteral {
     return this._coords;
   }
 
   constructor() {
   }
 
-  getLocation() {
+  getLocation(): LatLngLiteral | null {
     if (!this.coords || !this.locationTrackingBlocked) {
       navigator.geolocation.getCurrentPosition(
         (position) => this.handleGeolocationSuccess(position),
-             (error) => this.handleGeolocationError(error)
+        (error) => this.handleGeolocationError(error)
       );
+    } else {
+      this._coords = null;
     }
+
+    return this._coords;
   }
 
   isLocationBlocked(): boolean {
@@ -31,7 +35,7 @@ export class MapService {
     if (position) {
       this._coords = {
         lat: position.coords.latitude,
-        lon: position.coords.longitude
+        lng: position.coords.longitude
       };
     }
   }
@@ -42,5 +46,7 @@ export class MapService {
     } else {
       this.locationTrackingError = true;
     }
+
+    this._coords = null;
   }
 }
