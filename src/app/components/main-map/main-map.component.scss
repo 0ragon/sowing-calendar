@@ -2,3 +2,50 @@ agm-map {
   width: 100%;
   height: 100%;
 }
+
+.map-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  .map-settings {
+    min-width: 330px;
+    height: 100%;
+
+    .card {
+      height: 100%;
+      margin-left: 2px;
+    }
+
+    a {
+      padding: 10px 15px;
+    }
+
+    .btn {
+      border-radius: 0;
+      outline: none;
+      width: 100%;
+    }
+
+    button.btn {
+      padding: 8px 8px;
+      &:hover {
+        background-color: darken(#6c757d, 15%);
+      }
+    }
+
+    //.map-typeToggle-container, map-coords-container {
+    //  display: flex;
+    //  flex-direction: column;
+    //}
+  }
+}
+
+
+.active {
+  background-color: #6c757d;
+}
+
+.modal-map-container {
+  max-width: 100vw;
+  height: 300px;
+}
