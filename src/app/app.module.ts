@@ -19,6 +19,8 @@ import {LibraryItemDetailsComponent} from './components/library/library-item-det
 import {NewsComponent} from './components/news/news.component';
 import {NewDetailsComponent} from './components/news/new-details/new-details.component';
 import {NewsListComponent} from './components/news/news-list/news-list.component';
+import { ModalModule } from 'ngx-bootstrap';
+import { NewCardComponent } from './components/new-card/new-card.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {NewsListComponent} from './components/news/news-list/news-list.component
     NewsComponent,
     NewsListComponent,
     NewDetailsComponent,
+    NewCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import {NewsListComponent} from './components/news/news-list/news-list.component
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcla_l17b_LUqgvMbimVsvkpcFBq4fD3Q'
-    })
+    }),
+    ModalModule.forRoot()
   ],
   providers: [AuthService, MapService],
   bootstrap: [AppComponent]

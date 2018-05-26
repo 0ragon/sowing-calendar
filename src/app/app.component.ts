@@ -14,6 +14,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this._mapService.getLocation();
-    setInterval(() => console.log(this._mapService.coords), 1000);
+    // setInterval(() => console.log(this._mapService.coords), 1000);
   }
 }
