@@ -13,8 +13,11 @@
 }
 
 .content-container {
+  display: flex;
+  justify-content: space-evenly;
   width: 100%;
-  height: calc(100% - 230px);
+  height: 100%;
+  //height: calc(100% - 230px);
   overflow-y: auto;
 }
 

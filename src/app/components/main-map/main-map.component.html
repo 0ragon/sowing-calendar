@@ -9,7 +9,6 @@
            (mapRightClick)="removeLastPolygonPath($event)"
   >
     <agm-polygon *ngIf="paths.length > 1"
-                 (polyDrag)="onPolyDrag($event)"
                  [polyDraggable]="true"
                  [(paths)]="paths"
                  [editable]="false"
@@ -44,84 +43,6 @@
           <a class="btn btn-primary" (click)="openModal(map_modal)">
             Зберегти
           </a>
-          <ng-template #map_modal>
-            <div class="modal-header">
-              <h4 class="modal-title pull-left">Modal</h4>
-              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="fieldName">Назва</label>
-                <input type="email" class="form-control" id="fieldName" #input1
-                       placeholder="Введіть назву ділянки">
-              </div>
-              <div class="form-group modal-map-container">
-                <agm-map
-                  [minZoom]="zoom - 1"
-                  [maxZoom]="zoom - 1"
-                  [zoom]="zoom - 1"
-                  [latitude]="userCoords.lat"
-                  [longitude]="userCoords.lng"
-                  [mapTypeId]="selectedMapType"
-                >
-                  <agm-polygon
-                    [(paths)]="paths"
-                    [polyDraggable]="false"
-                    [editable]="false"
-                    [draggable]="false"
-                  >
-                  </agm-polygon>
-                </agm-map>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-              <button type="button" class="btn btn-primary" [disabled]="input1.value.length < 4">Підтвердити
-              </button>
-            </div>
-            <!--<div class="modal">-->
-            <!--<div class="modal-dialog">-->
-            <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-            <!--<h5 class="modal-title">Зберегти ділянку</h5>-->
-            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-            <!--<span aria-hidden="true">&times;</span>-->
-            <!--</button>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-            <!--<div class="form-group">-->
-            <!--<label for="fieldName">Назва</label>-->
-            <!--<input type="email" class="form-control" id="fieldName" #input1-->
-            <!--placeholder="Введіть назву ділянки">-->
-            <!--</div>-->
-            <!--<div class="form-group modal-map-container">-->
-            <!--<agm-map-->
-            <!--[minZoom]="zoom"-->
-            <!--[maxZoom]="zoom"-->
-            <!--[zoom]="zoom"-->
-            <!--[mapTypeId]="selectedMapType"-->
-            <!--&gt;-->
-            <!--<agm-polygon-->
-            <!--[polyDraggable]="false"-->
-
-            <!--[editable]="false"-->
-            <!--[draggable]="false"-->
-            <!--&gt;-->
-            <!--</agm-polygon>-->
-            <!--</agm-map>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>-->
-            <!--<button type="button" class="btn btn-primary" [disabled]="input1.value.length < 4">Підтвердити-->
-            <!--</button>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-          </ng-template>
         </div>
       </div>
     </div>

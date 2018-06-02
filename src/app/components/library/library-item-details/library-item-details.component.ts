@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-library-item-details',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./library-item-details.component.scss']
 })
 export class LibraryItemDetailsComponent implements OnInit {
-
-  constructor() { }
+  constructor(private _route: Router) { }
 
   ngOnInit() {
+    console.log('router', this._route);
   }
 
 }

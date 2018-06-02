@@ -1,0 +1,44 @@
+<div class="modal-header" *ngIf="data">
+  <h4 class="modal-title pull-left">Modal</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #form="ngForm">
+    <div class="form-group">
+      <label for="fieldName">Назва</label>
+      <input type="email" class="form-control" id="fieldName" #input1 required
+             placeholder="Введіть назву ділянки" name="fieldName" [(ngModel)]="info.fieldName">
+    </div>
+    <div class="form-group modal-map-container">
+      <agm-map class="modal-map"
+               [minZoom]="data.zoom - 1"
+               [maxZoom]="data.zoom - 1"
+               [zoom]="data.zoom - 1"
+               [latitude]="data.userCoords.lat"
+               [longitude]="data.userCoords.lng"
+               [draggable]="false"
+      >
+        <agm-polygon
+          [paths]="data.paths"
+          [polyDraggable]="false"
+          [editable]="false"
+          [draggable]="false"
+        >
+        </agm-polygon>
+      </agm-map>
+    </div>
+    <div class="form-group">
+      <label for="fieldName">Опис</label>
+      <input type="email" class="form-control" id="fieldDescription" #input1
+             placeholder="Введіть опис чи коментар" name="fieldDescription" [(ngModel)]="info.fieldDescription">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Закрити</button>
+  <button type="button" class="btn btn-primary" (click)="saveField()" [disabled]="form.invalid">Підтвердити
+  </button>
+</div>
+

@@ -1,0 +1,8 @@
+<agm-map [latitude]="polygonPoints[0].lat" [longitude]="polygonPoints[0].lng" [zoom]="zoom">
+  <agm-polygon *ngIf="polygonPoints"
+               [polyDraggable]="true"
+               [paths]="polygonPoints"
+               [editable]="false"
+               [draggable]="true">
+  </agm-polygon>
+</agm-map>

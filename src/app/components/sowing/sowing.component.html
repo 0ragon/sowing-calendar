@@ -1,0 +1,68 @@
+<div class="sowing-container" *ngIf="fields">
+  <div class="sowing-main">
+    <div class="fields col-md-3">
+      <h3 class="list-group-item disabled active">
+        Поля
+      </h3>
+      <div class="list-group" id="list-tab" role="tablist">
+        <a *ngFor="let field of fields" class="list-group-item list-group-item-action"
+           data-toggle="list" [class.active]="field.id === selectedField.id" role="tab" (click)="onFieldClick(field)">
+       <span class="field">
+        <span> {{field.name}}</span>
+        <span (click)="openRemoveFieldModal(field)">
+          <i class="fa fa-trash"></i>
+        </span>
+       </span>
+        </a>
+      </div>
+      <button class="btn btn-success" (click)="orderSowing()">Замовити сівозміну</button>
+    </div>
+    <div class="col-md-9 map-container">
+      <!--<button class="btn edit-toggle" (click)="toggleMapEdit()">-->
+        <!--<span class="edit-toggle btn btn-primary" (click)="toggleMapEdit()">-->
+          <!--<i class="fa" [ngClass]="{'fa-edit': !isMapEditable, 'fa-check': isMapEditable}"></i>-->
+        <!--</span>-->
+      <!--</button>-->
+      <app-map [polygonPoints]="selectedField.points"></app-map>
+      <div [class.map-disabled]="!isMapEditable"></div>
+    </div>
+  </div>
+  <div class="sowing-table" *ngIf="selectedField" style="margin-top: 30px">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="row">№</th>
+        <th scope="row">Рік</th>
+        <th scope="row">Культура</th>
+        <th scope="row">Дата посадки</th>
+        <th scope="row">Дата збору</th>
+        <th scope="row">Примітки</th>
+        <th scope="row"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of planItems; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{item.year}}</td>
+        <td>{{item.culture}}</td>
+        <td>{{item.sowingDate | date: 'short'}}</td>
+        <td>{{item.harvestDate  | date: 'short'}}</td>
+        <td>{{item.notes}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="openRemovePlanModal(i + 1, item.id)">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button class="btn btn-primary" (click)="editPlan(item.id)">
+            <i class="fa fa-cogs"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <button class="btn btn-success" (click)="addPlanItem()">Add</button>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+

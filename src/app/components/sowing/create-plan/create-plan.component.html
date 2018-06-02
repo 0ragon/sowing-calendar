@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Створити план</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #form="ngForm">
+    <div class="form-group">
+      <label for="culture">Культура</label>
+      <select id="culture" class="input-group input" name="culture" [(ngModel)]="planItem.culture" required>
+        <option *ngFor="let culture of cultures" [value]="culture">{{culture}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="gatherDate">Дата посадки</label>
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="sd" [(ngModel)]="planItem.sowingDate" ngbDatepicker #sd="ngbDatepicker" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="sd.toggle()" type="button">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="gatherDate">Дата збору</label>
+      <div class="input-group">
+        <input id="gatherDate" class="form-control" placeholder="yyyy-mm-dd" required
+               name="hd" [(ngModel)]="planItem.harvestDate" ngbDatepicker #hd="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="hd.toggle()" type="button">
+            <i class="fa fa-calendar"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="notes">Нотатки</label>
+      <textarea placeholder="Нотатки про план" name="description" maxlength="300"
+                class="form-control" id="notes" [(ngModel)]="planItem.notes"
+                bsDatepicker></textarea>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close()">Скасувати</button>
+  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Підтвердити
+  </button>
+</div>

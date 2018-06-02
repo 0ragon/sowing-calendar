@@ -19,9 +19,22 @@ import {LibraryItemDetailsComponent} from './components/library/library-item-det
 import {NewsComponent} from './components/news/news.component';
 import {NewDetailsComponent} from './components/news/new-details/new-details.component';
 import {NewsListComponent} from './components/news/news-list/news-list.component';
-import { ModalModule } from 'ngx-bootstrap';
-import { NewCardComponent } from './components/new-card/new-card.component';
-
+import {NewCardComponent} from './components/new-card/new-card.component';
+import {SowingComponent} from './components/sowing/sowing.component';
+import {MapComponent} from './components/map/map.component';
+import {LiteratureComponent} from './components/library/literature/literature.component';
+import {MagazinesComponent} from './components/library/magazines/magazines.component';
+import {AppService} from './services/app.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {InterceptorService} from './services/interceptor.service';
+import {FormsModule} from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CreatePlanComponent } from './components/sowing/create-plan/create-plan.component';
+import {RemoveConfirmComponent} from './components/sowing/remove-confirm/remove-confirm.component';
+import { SaveFieldDialogComponent } from './components/main-map/save-field-dialog/save-field-dialog.component';
+import { OrderSowingDialogComponent } from './components/sowing/order-sowing-dialog/order-sowing-dialog.component';
+import {CheckboxModule} from 'primeng/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +52,14 @@ import { NewCardComponent } from './components/new-card/new-card.component';
     NewsListComponent,
     NewDetailsComponent,
     NewCardComponent,
+    SowingComponent,
+    MapComponent,
+    LiteratureComponent,
+    MagazinesComponent,
+    CreatePlanComponent,
+    RemoveConfirmComponent,
+    SaveFieldDialogComponent,
+    OrderSowingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +68,26 @@ import { NewCardComponent } from './components/new-card/new-card.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcla_l17b_LUqgvMbimVsvkpcFBq4fD3Q'
     }),
-    ModalModule.forRoot()
+    // ModalModule.forRoot(),
+    HttpClientModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    // BsDatepickerModule.forRoot(),
+    NgbModule.forRoot(),
+    CheckboxModule
   ],
-  providers: [AuthService, MapService],
+  entryComponents: [
+    CreatePlanComponent,
+    RemoveConfirmComponent,
+    SaveFieldDialogComponent,
+    OrderSowingDialogComponent
+  ],
+  providers: [AuthService, MapService, AppService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

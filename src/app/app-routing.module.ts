@@ -10,6 +10,9 @@ import {LibraryItemDetailsComponent} from './components/library/library-item-det
 import {NewsComponent} from './components/news/news.component';
 import {NewDetailsComponent} from './components/news/new-details/new-details.component';
 import {NewsListComponent} from './components/news/news-list/news-list.component';
+import {SowingComponent} from './components/sowing/sowing.component';
+import {MagazinesComponent} from './components/library/magazines/magazines.component';
+import {LiteratureComponent} from './components/library/literature/literature.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,10 @@ const routes: Routes = [
   {
     path: 'registration',
     component: RegistrationComponent
+  },
+  {
+    path: 'sowing',
+    component: SowingComponent
   },
   {
     path: 'main-map',
@@ -49,7 +56,23 @@ const routes: Routes = [
       {
         path: 'cultures/:id',
         component: LibraryItemDetailsComponent,
-      }
+      },
+      {
+        path: 'literature',
+        component: LiteratureComponent,
+      },
+      {
+        path: 'literature/:id',
+        component: LibraryItemDetailsComponent,
+      },
+      {
+        path: 'magazines',
+        component: MagazinesComponent,
+      },
+      {
+        path: 'cultures/:id',
+        component: LibraryItemDetailsComponent,
+      },
     ]
   },
   {
