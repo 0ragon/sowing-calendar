@@ -1,21 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {MapService} from './services/map.service';
-import {BsModalService} from 'ngx-bootstrap';
+import {AppService} from './services/app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [BsModalService]
+  providers: []
 })
 export class AppComponent implements OnInit {
   userCredentials = {name: 'Igor'};
-
-  constructor(private _mapService: MapService) {
+  isAuthorized;
+  constructor(private _mapService: MapService, private _appService: AppService) {
   }
-
   ngOnInit() {
     this._mapService.getLocation();
+    this.isAuthorized = this._appService.isAuthorized;
     // setInterval(() => console.log(this._mapService.coords), 1000);
   }
 }

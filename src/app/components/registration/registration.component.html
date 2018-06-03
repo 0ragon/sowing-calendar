@@ -1,25 +1,31 @@
 <div class="auth-wrapper jumbotron col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-5">
-  <form>
+  <form #form="ngForm">
     <h2 class="title">Registration</h2>
     <div class="form-group">
-      <input class="form-control" autocomplete="off" placeholder="Username">
+      <input class="form-control" autocomplete="off" placeholder="Ім'я"
+             #firstName name="username" required [(ngModel)]="info.firstName" minlength="3">
+    </div>
+     <div class="form-group">
+      <input class="form-control" autocomplete="off" placeholder="Прізвище"
+             #lastName name="username" required [(ngModel)]="info.lastName" minlength="3">
     </div>
     <div class="form-group">
-      <input class="form-control" type="email" autocomplete="off" placeholder="Email">
+      <input class="form-control" type="email" autocomplete="off" placeholder="Email"
+             required name="email" [(ngModel)]="info.email" minlength="8">
     </div>
-    <div class="form-group">
-      <input type="password" class="form-control" autocomplete="off" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <input class="form-control" autocomplete="off" placeholder="Confirm password">
+    <div class="form-group password-hide">
+      <i class="fa password-hide" [ngClass]="{'fa-eye': isPasswordShown, 'fa-eye-slash': !isPasswordShown}"
+      (click)="togglePasswordVisibility()"></i>
+      <input [type]="isPasswordShown? 'text' : 'password'" class="form-control" autocomplete="off" id="exampleInputPassword1"
+             placeholder="Password" required [(ngModel)]="info.password" name="password" minlength="8">
     </div>
     <div class="auth-additional">
       <small>
         <a routerLink="../login">Already have an account?</a>
       </small>
     </div>
-    <button type="submit" class="btn">
-      <a routerLink="../main">Submit</a>
+    <button type="submit" (click)="register()" class="btn" [disabled]="form.invalid">
+      <a>Submit</a>
     </button>
   </form>
 </div>

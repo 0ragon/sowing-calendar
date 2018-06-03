@@ -35,6 +35,7 @@ import {RemoveConfirmComponent} from './components/sowing/remove-confirm/remove-
 import { SaveFieldDialogComponent } from './components/main-map/save-field-dialog/save-field-dialog.component';
 import { OrderSowingDialogComponent } from './components/sowing/order-sowing-dialog/order-sowing-dialog.component';
 import {CheckboxModule} from 'primeng/checkbox';
+import {AuthGuard} from './services/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,11 +69,9 @@ import {CheckboxModule} from 'primeng/checkbox';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcla_l17b_LUqgvMbimVsvkpcFBq4fD3Q'
     }),
-    // ModalModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot(),
-    // BsDatepickerModule.forRoot(),
     NgbModule.forRoot(),
     CheckboxModule
   ],
@@ -82,7 +81,7 @@ import {CheckboxModule} from 'primeng/checkbox';
     SaveFieldDialogComponent,
     OrderSowingDialogComponent
   ],
-  providers: [AuthService, MapService, AppService,
+  providers: [AuthService, MapService, AppService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

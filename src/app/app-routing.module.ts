@@ -13,12 +13,14 @@ import {NewsListComponent} from './components/news/news-list/news-list.component
 import {SowingComponent} from './components/sowing/sowing.component';
 import {MagazinesComponent} from './components/library/magazines/magazines.component';
 import {LiteratureComponent} from './components/library/literature/literature.component';
+import {AuthGuard} from './services/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'main',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -30,19 +32,23 @@ const routes: Routes = [
   },
   {
     path: 'sowing',
-    component: SowingComponent
+    component: SowingComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'main-map',
-    component: MainMapComponent
+    component: MainMapComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'main',
-    component: MainComponent
+    component: MainComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'library',
     component: LibraryComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -78,6 +84,7 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

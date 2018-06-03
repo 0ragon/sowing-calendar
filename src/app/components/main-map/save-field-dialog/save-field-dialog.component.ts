@@ -24,7 +24,15 @@ export class SaveFieldDialogComponent implements OnInit {
   }
 
   saveField() {
-    const body = Object.assign({}, this.info, this.data.paths);
+    console.log('data', this.data);
+    console.log('info', this.info);
+    // const body = Object.assign({}, this.info, this.data.paths);
+    const body = {
+      name: this.info.fieldName,
+      points: this.data.paths,
+      description: this.info.fieldDescription
+    };
+    console.log('body', body);
     this._appService.showLoader();
     this._appService.createField(body)
       .subscribe(res => {

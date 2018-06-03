@@ -2,10 +2,12 @@
   <form>
     <h2 class="title">Login</h2>
     <div class="form-group">
-      <input type="email" class="form-control" autocomplete="off"  placeholder="Enter email">
+      <input type="email" class="form-control" autocomplete="off" (keyup)="onEmailChange($event)"
+             placeholder="Enter email">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" autocomplete="off" placeholder="Password">
+      <input type="password" class="form-control" autocomplete="off"
+             placeholder="Password" (keyup)="onPasswordChange($event)">
     </div>
     <div class="auth-additional">
       <div class="form-check">
@@ -16,6 +18,8 @@
         <a routerLink="../registration">Do not have an account?</a>
       </small>
     </div>
-    <button type="submit" class="btn">Submit</button>
+    <button type="submit" class="btn" [disabled]="!isEnabled(email, password)"
+            (click)="login()">Submit
+    </button>
   </form>
 </div>

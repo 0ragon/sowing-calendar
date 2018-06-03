@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AppService {
-  private readonly url = 'http://192.168.0.104:80/api/';
+  private readonly url = 'https://sowingapi.azurewebsites.net/api/';
   private _cultures = [
     {
       name: 'Пшениця',
@@ -91,9 +91,17 @@ export class AppService {
     }
   ];
   public isLoaderVisible = false;
-  public isAuthorized = false;
+  private _isAuthorized = false;
 
   constructor(private _http: HttpClient) {
+  }
+
+  get isAuthorized() {
+    return this._isAuthorized;
+  }
+
+  set isAuthorized(value: boolean) {
+    this.isAuthorized = value;
   }
 
   get cultures() {
@@ -109,7 +117,7 @@ export class AppService {
   }
 
   //#region Field
-  createField(body: Field) {
+  createField(body) {
     return this._http.post(`${this.url}Field`, body);
   }
 
@@ -120,6 +128,7 @@ export class AppService {
   removeField(id) {
     return this._http.delete<Field[]>(`${this.url}Field/${id}`);
   }
+
   //#endregion
 
   //#region Plan
@@ -141,6 +150,7 @@ export class AppService {
 
   //#endregion
 
+  //#region Loader
   toggleLoader() {
     this.isLoaderVisible = !this.isLoaderVisible;
   }
@@ -156,4 +166,16 @@ export class AppService {
       this.toggleLoader();
     }
   }
+
+  //#endregion
+
+  //#region Auth
+  login(body) {
+    return this._http.post(`${this.url}account/token`, body);
+  }
+  registration(body) {
+    return this._http.post(`${this.url}account/register`, body);
+
+  }
+  //#endregion
 }
