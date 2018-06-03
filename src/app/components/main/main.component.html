@@ -9,11 +9,13 @@
       </p>
     </div>
   </div>
+  <h2>Останні новини</h2>
   <div class="row mb-2">
-    <div class="col-md-10" *ngFor="let singleNew of news">
+    <div class="col-md-12" *ngFor="let singleNew of news">
       <app-new-card [new]="singleNew"></app-new-card>
     </div>
   </div>
+  <a routerLink="/news" class="btn col-12 more-news">Більше новин</a>
   <main role="main" class="container">
     <div class="row">
       <div class="col-md-8 blog-main">

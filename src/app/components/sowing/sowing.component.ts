@@ -104,9 +104,11 @@ export class SowingComponent implements OnInit {
   }
 
   toggleMapEdit() {
-    this.isMapEditable = !this.isMapEditable;
-    if (!this.isMapEditable) {
+    if (this.isMapEditable) {
       this._toastr.success('Зміни збережено');
+      this.isMapEditable = false;
+    } else {
+      this.isMapEditable = true;
     }
   }
 

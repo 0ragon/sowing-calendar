@@ -14,6 +14,7 @@ import {SowingComponent} from './components/sowing/sowing.component';
 import {MagazinesComponent} from './components/library/magazines/magazines.component';
 import {LiteratureComponent} from './components/library/literature/literature.component';
 import {AuthGuard} from './services/auth.guard';
+import {LoginGuard} from './services/login.guard';
 
 const routes: Routes = [
   {
@@ -23,12 +24,20 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+    canActivate: [LoginGuard]
+  },
+  {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'registration',
-    component: RegistrationComponent
+    component: RegistrationComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'sowing',

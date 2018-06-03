@@ -11,7 +11,8 @@ export class InterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this._spinner.toggleLoader();
-    const res = req.clone();
+    const token = localStorage.getItem('token');
+    const res = req.clone({headers: req.headers.set('Authorization', `bearer ${token}`)});
     return next.handle(res);
   }
 

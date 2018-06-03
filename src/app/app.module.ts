@@ -36,6 +36,8 @@ import { SaveFieldDialogComponent } from './components/main-map/save-field-dialo
 import { OrderSowingDialogComponent } from './components/sowing/order-sowing-dialog/order-sowing-dialog.component';
 import {CheckboxModule} from 'primeng/checkbox';
 import {AuthGuard} from './services/auth.guard';
+import {LoginGuard} from './services/login.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,7 @@ import {AuthGuard} from './services/auth.guard';
     SaveFieldDialogComponent,
     OrderSowingDialogComponent
   ],
-  providers: [AuthService, MapService, AppService, AuthGuard,
+  providers: [AuthService, MapService, AppService, AuthGuard, LoginGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

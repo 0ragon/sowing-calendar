@@ -10,12 +10,15 @@ import {AppService} from './services/app.service';
 })
 export class AppComponent implements OnInit {
   userCredentials = {name: 'Igor'};
-  isAuthorized;
+  isAuthorized = false;
   constructor(private _mapService: MapService, private _appService: AppService) {
   }
   ngOnInit() {
     this._mapService.getLocation();
-    this.isAuthorized = this._appService.isAuthorized;
-    // setInterval(() => console.log(this._mapService.coords), 1000);
+    this._appService.authorization$
+      .subscribe(res => this.isAuthorized = res);
+    if (localStorage.getItem('token')) {
+      this.isAuthorized = true;
+    }
   }
 }

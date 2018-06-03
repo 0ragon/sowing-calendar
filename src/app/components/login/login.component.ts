@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         res => {
           this.saveToken(res['token']);
           console.log('res', res);
-          this._app.isAuthorized = true;
+          this._app.onAuth(true);
           this._toastr.success('Логін успішний');
         },
         err => this._toastr.error('Не вдалося увійти')
