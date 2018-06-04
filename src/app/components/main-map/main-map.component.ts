@@ -30,6 +30,7 @@ export class MainMapComponent implements OnInit {
   locationTrackingBlocked = this._mapService.isLocationBlocked();
   zoom = 8;
   paths: LatLngLiteral[] = [];
+  isMapTypeCollapsed = true;
 
   constructor(private _mapService: MapService,
               private _modalService: NgbModal,

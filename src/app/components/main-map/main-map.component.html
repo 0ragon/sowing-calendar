@@ -20,16 +20,18 @@
     <div class="card">
       <div class="card-body">
         <div>
-          <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+          <button type="button" class="btn btn-outline-primary" (click)="isMapTypeCollapsed = !isMapTypeCollapsed"
+                  [attr.aria-expanded]="!isMapTypeCollapsed">
             Map type
-          </a>
-          <div class="collapse" id="collapseExample">
-            <div class="map-typeToggle-container column">
-              <button class="btn" *ngFor="let type of mapTypes" (click)="changeMapType(type)"
-                      [class.active]="type === selectedMapType">
-                {{type[0].toUpperCase() + type.substring(1)}}
-              </button>
+          </button>
+          <div [ngbCollapse]="isMapTypeCollapsed">
+            <div class="card">
+              <div class="card-body">
+                <button class="btn" *ngFor="let type of mapTypes" (click)="changeMapType(type)"
+                        [class.active]="type === selectedMapType">
+                  {{type[0].toUpperCase() + type.substring(1)}}
+                </button>
+              </div>
             </div>
           </div>
           <button [disabled]="!paths.length" class="btn btn-primary" role="button" (click)="clearMap()">
